@@ -7,10 +7,13 @@ import messageRouter from "./routes/message.route.js";
 import cors from "cors";
 import { app, server } from "./lib/socket.js";
 import path from "path";
+import { fileURLToPath } from "url";
 
 dotenv.config();
 
-const __dirname = path.resolve();
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 const PORT = process.env.PORT;
 const MONGODB_URI = process.env.MONGODB_URI;
 
@@ -27,12 +30,15 @@ app.use("/api/auth", authRoute);
 app.use("/api/message", messageRouter);
 
 if (process.env.NODE_ENV === "production") {
-  app.use(express.static(path.join(__dirname, "../frontend/dist")));
+  const frontendDist = path.join(__dirname, "../../frontend/dist");
+  app.use(express.static(frontendDist));
 
-  app.get("*", (req, res) => {
-    res.sendFile(path.join(__dirname, "../frontend", "dist", "index.html"));
+  // Catch-all must be '/*'
+  app.get("/*", (req, res) => {
+    res.sendFile(path.join(frontendDist, "index.html"));
   });
 }
+
 
 mongoose
   .connect(MONGODB_URI)
