@@ -5,7 +5,7 @@ import axios from "axios";
 import {io} from 'socket.io-client';
 
 
-const BASE_URL = import.meta.env.MODE === "development" ? 'http://localhost:3000' : '/';
+const BASE_URL = "https://voz-chat-production-dfe4.up.railway.app";
 
 
 export const useAuthStore = create((set, get) => ({
