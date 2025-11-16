@@ -23,7 +23,7 @@ const MessageInput = () => {
     formData.append("file", file);
     try {
       const res = await axios.post(
-        "http://localhost:3000/api/message/uploads",
+        "https://voz-chat-production.up.railway.app/api/message/uploads",
         formData,
         {
           headers: { "Content-Type": "multipart/form-data" },
