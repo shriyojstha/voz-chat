@@ -20,7 +20,7 @@ app.use(express.urlencoded({ limit: "50mb", extended: true }));
 app.use(cookieParser());
 app.use(
   cors({
-    origin: "http://localhost:5173",
+    origin: "https://voz-chat-umber.vercel.app",
     credentials: true,
   })
 );
@@ -34,7 +34,7 @@ mongoose
   .connect(MONGODB_URI)
   .then(
     server.listen(PORT, () => {
-      console.log(`Server started on http://localhost:${PORT}`);
+      console.log(`voz-chat-production-dfe4.up.railway.app`);
     })
   )
   .catch((err) => {
