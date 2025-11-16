@@ -34,7 +34,7 @@ if (process.env.NODE_ENV === "production") {
   app.use(express.static(frontendDist));
 
   // Catch-all must be '/*'
-  app.get("/:any(*)", (req, res) => {
+  app.get("*", (req, res) => {
     res.sendFile(path.join(frontendDist, "index.html"));
   });
 }
